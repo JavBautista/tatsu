@@ -19,6 +19,7 @@ class CreateExpensesTable extends Migration
             $table->decimal('cost',8,2)->nullable();
             $table->boolean('till')->default(1);
             $table->string('person')->nullable();
+            $table->string('evidence')->nullable();
             $table->date('date')->nullable();
             $table->timestamps();
         });

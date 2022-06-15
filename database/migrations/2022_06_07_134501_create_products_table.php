@@ -18,8 +18,10 @@ class CreateProductsTable extends Migration
             $table->boolean('active')->default(1);
             $table->string('key');
             $table->string('name')->nullable();
+            $table->string('provider')->nullable();
             $table->text('description')->nullable();
             $table->string('unit')->nullable();
+            $table->integer('qty')->default(0);
             $table->decimal('cost',8,2)->nullable();
             $table->timestamps();
         });
