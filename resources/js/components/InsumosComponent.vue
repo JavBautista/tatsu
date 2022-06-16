@@ -32,8 +32,9 @@
                                 <tr>
                                     <th>Clave</th>
                                     <th>Nombre</th>
-                                    <th>Proveedor</th>
+                                    <!--<th>Proveedor</th>
                                     <th>Descripción</th>
+                                    -->
                                     <th>Unidad</th>
                                     <th>Costo Unitario</th>
                                     <th>Qty</th>
@@ -46,8 +47,9 @@
                                 <tr v-for="product in arrayProducts" :key="product.id">
                                     <td v-text="product.key"></td>
                                     <td v-text="product.name"></td>
-                                    <td v-text="product.provider"></td>
+                                    <!--<td v-text="product.provider"></td>
                                     <td v-text="product.description"></td>
+                                    -->
                                     <td v-text="product.unit"></td>
                                     <td class="text-bg-primary" v-text="'$'+product.cost"></td>
                                     <td v-text="product.qty"></td>

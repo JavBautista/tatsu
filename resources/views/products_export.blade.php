@@ -3,8 +3,6 @@
     <tr>
         <th>key</th>
         <th>name</th>
-        <th>provider</th>
-        <th>description</th>
         <th>unit</th>
         <th>cost</th>
     </tr>
@@ -14,8 +12,6 @@
         <tr>
             <td>{{$product->key}}</td>
             <td>{{$product->name}}</td>
-            <td>{{$product->provider}}</td>
-            <td>{{$product->description}}</td>
             <td>{{$product->unit}}</td>
             <td>{{$product->cost}}</td>
         </tr>
