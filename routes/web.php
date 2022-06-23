@@ -49,4 +49,28 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/gastos', [App\Http\Controllers\ExpenseController::class, 'index'])->name('gastos');
     Route::get('/gastos/get', [App\Http\Controllers\ExpenseController::class, 'get']);
     Route::post('/gastos/store', [App\Http\Controllers\ExpenseController::class, 'store']);
+
+    /*PERSONAL*/
+    Route::get('/personal', [App\Http\Controllers\EmployeeController::class, 'index'])->name('personal');
+    Route::get('/personal/get', [App\Http\Controllers\EmployeeController::class, 'get']);
+    Route::post('/personal/store', [App\Http\Controllers\EmployeeController::class, 'store']);
+    Route::put('/personal/update', [App\Http\Controllers\EmployeeController::class, 'update']);
+    Route::put('/personal/active', [App\Http\Controllers\EmployeeController::class, 'active']);
+    Route::put('/personal/inactive', [App\Http\Controllers\EmployeeController::class, 'inactive']);
+
+
+
+    /*TIPOS DE PERSONAL*/
+    Route::get('/tipos-personal', [App\Http\Controllers\TypesEmployeeController::class, 'index'])->name('tipos-personal');
+    Route::get('/tipos-personal/get', [App\Http\Controllers\TypesEmployeeController::class, 'get']);
+    Route::post('/tipos-personal/store', [App\Http\Controllers\TypesEmployeeController::class, 'store']);
+    Route::put('/tipos-personal/update', [App\Http\Controllers\TypesEmployeeController::class, 'update']);
+    Route::put('/tipos-personal/active', [App\Http\Controllers\TypesEmployeeController::class, 'active']);
+    Route::put('/tipos-personal/inactive', [App\Http\Controllers\TypesEmployeeController::class, 'inactive']);
+
+
+
+
+
+
 });#./Middlware AUTH

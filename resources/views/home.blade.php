@@ -19,6 +19,11 @@
                       <a href="/gastos"  class="list-group-item list-group-item-action">GASTOS</a>
                       <a href="/insumos" class="list-group-item list-group-item-action">INSUMOS</a>
                     </div>
+
+                    <div class="list-group mt-4">
+                      <a href="/personal"  class="list-group-item list-group-item-action">PERSONAL</a>
+                      <a href="/tipos-personal"  class="list-group-item list-group-item-action">TIPOS DE PERSONAL</a>
+                    </div>
                 </div>
             </div>
         </div>

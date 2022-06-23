@@ -19,11 +19,11 @@ class CashOutController extends Controller
         $criterio = $request->criterio;
 
         if($buscar==''){
-            $cash_outs = CashOut::orderBy('id', 'desc')
+            $cash_outs = CashOut::orderBy('date', 'desc')
                         ->paginate(20);
         }else{
             $cash_outs = CashOut::where($criterio, 'like', '%'.$buscar.'%')
-                        ->orderBy('id','desc')
+                        ->orderBy('date','desc')
                         ->paginate(20);
         }
 
@@ -49,30 +49,30 @@ class CashOutController extends Controller
         $cash = $total-($request->card_sales + $request->card_tips);
         
         $cash_out= new CashOut();
-        $cash_out->date     =$request->date;
-        $cash_out->expenses = $request->expenses;
-        $cash_out->sales = $request->sales;
-        $cash_out->card_sales = $request->card_sales;
+        $cash_out->date      =$request->date;
+        $cash_out->expenses  = $request->expenses;
+        $cash_out->sales     = $request->sales;
+        $cash_out->card_sales= $request->card_sales;
         $cash_out->card_tips = $request->card_tips;
-        $cash_out->total = $total;
-        $cash_out->cash = $cash;
+        $cash_out->total     = $total;
+        $cash_out->cash      = $cash;
         $cash_out->save();
     }//store
 
     public function update(Request $request){
         if(!$request->ajax()) return redirect('/');
 
-        $total= $request->expenses - $request->sales;
+        $total= $request->sales - $request->expenses;
         $cash = $total-($request->card_sales + $request->card_tips);
         
         $cash_out= CashOut::findOrFail($request->cash_out_id);
-        $cash_out->date     =$request->date;
-        $cash_out->expenses = $request->expenses;
-        $cash_out->sales = $request->sales;
+        $cash_out->date        =$request->date;
+        $cash_out->expenses   = $request->expenses;
+        $cash_out->sales      = $request->sales;
         $cash_out->card_sales = $request->card_sales;
-        $cash_out->card_tips = $request->card_tips;
-        $cash_out->total = $total;
-        $cash_out->cash = $cash;
+        $cash_out->card_tips  = $request->card_tips;
+        $cash_out->total      = $total;
+        $cash_out->cash       = $cash;
         $cash_out->save();
     }//update
 

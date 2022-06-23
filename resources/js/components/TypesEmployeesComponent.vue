@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="container-fluid">
-            <!--Card Productos-->
+            <!--Card-->
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Cortes
-                    <button type="button" @click="abrirModal('product','registrar')" class="btn btn-primary float-rigth">
+                    <i class="fa fa-align-justify"></i> Tipos de personal
+                    <button type="button" @click="abrirModal('type','registrar')" class="btn btn-primary float-rigth">
                         <i class="bi bi-plus-circle"></i>&nbsp;Nuevo
                     </button>
                 </div>
@@ -14,11 +14,10 @@
                         <div class="col-md-6">
                         <div class="input-group">
                             <select class="form-control col-md-3" v-model="criterio">
-                                <option value="name">Nombre</option>
                                 <option value="description">Descripción</option>
                             </select>
-                            <input type="text" v-model="buscar" class="form-control" placeholder="Texto a buscar" @keyup.enter="cargarCortes(1,buscar,criterio)">
-                            <button type="submit" @click="cargarCortes(1,buscar,criterio)" class="btn btn-primary"><i class="bi bi-search"></i> Buscar</button>
+                            <input type="text" v-model="buscar" class="form-control" placeholder="Texto a buscar" @keyup.enter="loadTypes(1,buscar,criterio)">
+                            <button type="submit" @click="loadTypes(1,buscar,criterio)" class="btn btn-primary"><i class="bi bi-search"></i> Buscar</button>
                         </div>
                         </div>
                     </div>
@@ -26,27 +25,24 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>FECHA</th>
-                                    <th>NOTAS</th>
-                                    <th>GASTOS</th>
-                                    <th>TARJETA</th>
-                                    <th>TARJETA PROPINA</th>
-                                    <th>NETO</th>
-                                    <th>EFECTIVO</th>
-                                    <th>Opciones</th>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>ESTATUS</th>
+                                    <th>OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="cashout in arrayCortes" :key="cashout.id">
-                                    <td v-text="cashout.date"></td>
-                                    <td v-text="'$'+cashout.sales"></td>
-                                    <td v-text="'$'+cashout.expenses"></td>
-                                    <td v-text="'$'+cashout.card_sales"></td>
-                                    <td v-text="'$'+cashout.card_tips"></td>
-                                    <td> <strong v-text="'$'+cashout.total"></strong></td>
-                                    <td> <strong v-text="'$'+cashout.cash"></strong></td>
+                                <tr v-for="type_emp in arrayTypes" :key="type_emp.id">
+                                    <td v-text="type_emp.description"></td>
                                     <td>
-                                        <button type="button" class="btn btn-info" @click="abrirModal('product','actualizar_datos', cashout)" title="Editar"><i class="bi bi-pencil-square"></i></button>
+                                        <span v-if="type_emp.active" class="badge bg-success">Activo</span>
+                                        <span v-else class="badge bg-danger">Baja</span>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info" @click="abrirModal('type','actualizar_datos', type_emp)" title="Editar"><i class="bi bi-pencil-square"></i></button>
+
+                                        <button v-if="type_emp.active" type="button" class="btn btn-outline-warning" @click="editInactive(type_emp.id)" title="Desactivar"> <i class="bi bi-hand-thumbs-down"></i></button>
+
+                                        <button v-else type="button" class="btn btn-outline-secondary" @click="editActive(type_emp.id)" title="Activar"> <i class="bi bi-hand-thumbs-up"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -85,10 +81,10 @@
                     </div>
                     <div class="modal-body">
                         <form v-on:submit.prevent action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                            <div v-show="errorCorte" class="form-group row div-error">
+                            <div v-show="error" class="form-group row div-error">
                                 <div class="container-fluid">
                                     <div class="alert alert-danger text-center">
-                                        <div v-for="error in eerrorMostrarMsjCorte" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsj" :key="error" v-text="error">
                                         </div>
                                     </div>
                                 </div>
@@ -97,35 +93,11 @@
                             <!--tipoAccion==1 o 2: Agregar o ACtualizar-->
                             <div v-if="tipoAccion==1 || tipoAccion==2">
                             <!--<div v-else>-->
-                                
                                 <div class="form-group">
-                                    <strong class="text text-danger">*</strong><label for="date">Fecha del corte</label>
-                                    <datepicker v-model="date"></datepicker>
+                                    <label for="description"><strong class="text text-danger">*</strong>Descripcion</label>
+                                    <input type="text" class="form-control" v-model="description" placeholder="Ingrese descripción" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="sales"><strong class="text text-danger">*</strong>Ventas</label>
-                                    <input type="number" min="0" step="1" class="form-control" v-model="sales" placeholder="0.00">
-                                </div>
-
-                                <div class="form-group">
-                                    <strong class="text text-danger">*</strong><label for="expenses">Gastos</label>
-                                    <input type="number" min="0" step="1" class="form-control" v-model="expenses" placeholder="0.00">
-                                </div>
-                                <div class="form-group">
-                                    <label for="card_sales">Tarjeta</label>
-                                    <input type="number" min="0" step="1" class="form-control" v-model="card_sales" placeholder="0.00">
-                                </div>
-                                <div class="form-group">
-                                    <label for="card_tisp">Propina tarjeta</label>
-                                    <input type="number" min="0" step="1" class="form-control" v-model="card_tips" placeholder="0.00">
-                                </div>
-
-                                <!--<div class="form-group">
-                                    <label for="observarion">Comentario</label>
-                                    <textarea class="form-control" v-model="observarion"  rows="3"></textarea>
-                                </div>
-                                -->
                             </div>
                             <!--./tipoAccion==1 o 2: Agregar o ACtualizar-->
                         </form>
@@ -155,7 +127,7 @@
         data(){
             return {
               
-              arrayCortes:[],
+              arrayTypes:[],
               pagination:{
                   'total':0,
                   'current_page':0,
@@ -165,26 +137,20 @@
                   'to':0
               },
               offset:3,
-              criterio:'name',
+              criterio:'description',
               buscar:'',
 
-              corte_id:0,              
-              date:null,
-              expenses:0,
-              sales:0,
-              card_sales:0,
-              card_tips:0,
-              total:0,
-              cash:0,
-              observation:'',
+              type_id:0,
+              type:0,
+              description:'',
 
               errors:[],
 
               modal:0,
               tituloModal:'',
               tipoAccion:0,
-              errorCorte:0,
-              eerrorMostrarMsjCorte:[],
+              error:0,
+              errorMostrarMsj:[],
             }
         },
         computed:{            
@@ -216,13 +182,12 @@
            }
         },
         methods:{           
-            cargarCortes(page,buscar,criterio){
+            loadTypes(page,buscar,criterio){
                 let me=this;
-                var url = '/cortes/get?page='+page+'&buscar='+buscar+'&criterio='+criterio;
+                var url = '/tipos-personal/get?page='+page+'&buscar='+buscar+'&criterio='+criterio;
                 axios.get(url).then(function (response){
-                    console.log(response)
-                    var respuesta  = response.data;
-                    me.arrayCortes = respuesta.cash_outs.data;
+                    let respuesta = response.data;
+                    me.arrayTypes = respuesta.types_employee.data;
                     me.pagination = respuesta.pagination;
                   })
                   .catch(function (error) {
@@ -236,35 +201,27 @@
             cambiarPagina(page,buscar,criterio){
                 let me = this;
                 me.pagination.current_page = page;
-                me.cargarCortes(page,buscar,criterio);
+                me.loadTypes(page,buscar,criterio);
             },
-             validarDatos(){
-                this.errorCorte=0;
-                this.eerrorMostrarMsjCorte=[];
-                if(!this.date) this.eerrorMostrarMsjCorte.push('El valor date no puede estar vacio.');
-                if(!this.expenses) this.eerrorMostrarMsjCorte.push('El valor expenses no puede estar vacio.');
-                if(!this.sales) this.eerrorMostrarMsjCorte.push('El valor sales no puede estar vacio.');
-                if(this.eerrorMostrarMsjCorte.length) this.errorCorte=1;
-                return this.errorCorte;
+            validarDatos(){
+                this.error=0;
+                this.errorMostrarMsj=[];
+                if(!this.description) this.errorMostrarMsj.push('El valor descripcion no puede estar vacio.');
+                if(this.errorMostrarMsj.length) this.error=1;
+                return this.error;
             },
             registrar(){
                 if(this.validarDatos()){
                     return;
                 }
                 let me=this;
-                let formatted_date = moment(me.date).format('YYYY-MM-DD')
-                axios.post('/cortes/store',{
-                  'date':formatted_date,
-                  'expenses':me.expenses,
-                  'sales':me.sales,
-                  'card_sales':me.card_sales,
-                  'card_tips':me.card_tips,
-                  //'observation':me.observation
+                axios.post('/tipos-personal/store',{
+                  'description':me.description
 
                 }).then(function (response){
                   //console.log(response)
                   me.cerrarModal();
-                  me.cargarCortes(me.pagination.current_page,me.buscar,me.criterio)
+                  me.loadTypes(me.pagination.current_page,me.buscar,me.criterio)
                 }).catch(function (error){
                     console.log(error);
                 });
@@ -274,57 +231,107 @@
                     return;
                 }
                 let me=this;
-                let formatted_date = moment(me.date).format('YYYY-MM-DD')
-                axios.put('/cortes/update',{
-                  'cash_out_id':me.corte_id,               
-                  'date':formatted_date,
-                  'expenses':me.expenses,
-                  'sales':me.sales,
-                  'card_sales':me.card_sales,
-                  'card_tips':me.card_tips,
-                  //'observation':me.observation
-
+                axios.put('/tipos-personal/update',{
+                  'id':me.type_id,
+                  'description':me.description
                 }).then(function (response){
                   //console.log(response)
                   me.cerrarModal();
-                  me.cargarCortes(me.pagination.current_page,me.buscar,me.criterio)
+                  me.loadTypes(me.pagination.current_page,me.buscar,me.criterio)
                 }).catch(function (error){
                     console.log(error);
                 });
             },
+
+            editActive(id){
+                const swalWithBootstrapButtons = Swal.mixin({
+                  customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                  },
+                  buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                  title: '¿Desea cambiar a activo?',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Aceptar',
+                  cancelButtonText: 'Cancelar',
+                  reverseButtons: true
+                }).then((result) => {
+                  if (result.value) {
+
+                    let me=this;
+                    axios.put('/tipos-personal/active',{
+                        'id': id
+                    }).then(function (response){
+                        me.loadTypes(me.pagination.current_page,me.buscar,me.criterio);
+                        swalWithBootstrapButtons.fire(
+                          'Activo',
+                          'El registro ha sido actualizado con exito.',
+                          'success'
+                        )
+                    }).catch(function (error){
+                        console.log(error);
+                    });
+
+                  }
+                })
+            },
+            editInactive(id){
+                const swalWithBootstrapButtons = Swal.mixin({
+                  customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                  },
+                  buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                  title: '¿Desea cambiar a inactivo?',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Aceptar',
+                  cancelButtonText: 'Cancelar',
+                  reverseButtons: true
+                }).then((result) => {
+                  if (result.value) {
+                    let me=this;
+                    axios.put('/tipos-personal/inactive',{
+                        'id': id
+                    }).then(function (response){
+                        me.loadTypes(me.pagination.current_page,me.buscar,me.criterio);
+                        swalWithBootstrapButtons.fire(
+                          'Inactivo',
+                          'El registro ha sido actualizado con exito.',
+                          'success'
+                        )
+                    }).catch(function (error){
+                        console.log(error);
+                    });
+                  }
+                })
+            },
             abrirModal(modelo, accion, data=[]){
                 switch(modelo){
-                    case "product":{
+                    case "type":{
                         switch(accion){
                             case 'registrar':{
                                 this.modal=1;
                                 this.tipoAccion =1;
                                 this.tituloModal='Agregar';
-
-                                this.corte=0;
-                                this.date='';
-                                this.expenses=0;
-                                this.sales =0;
-                                this.card_sales =0;
-                                this.card_tips=0;
-                                this.observation='';
-
-
+                                this.active=0;
+                                this.description='';
                                 break;
                             }
                             case 'actualizar_datos':{
                                 this.modal=1;
                                 this.tipoAccion =2;
                                 this.tituloModal='Actualizar';
-
-                                this.corte_id= data['id'];
-                                
-                                this.date     = data['date'];
-                                this.expenses = data['expenses'];
-                                this.sales = data['sales'];
-                                this.card_sales = data['card_sales'];
-                                this.card_tips  = data['card_tips'];
-                                this.observation  = '';
+                                this.type_id     = data['id'];
+                                this.active      = data['active'];
+                                this.description = data['description'];
                                 break;
                             }
                         }
@@ -337,8 +344,7 @@
             },
         },
         mounted() {
-            console.log('CashOuts component mounted.')
-            this.cargarCortes(1,'','name');
+            this.loadTypes(1,'','description');
         }
     }
 </script>

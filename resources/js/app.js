@@ -21,9 +21,11 @@ window.Vue = require('vue').default;
 
 
 Vue.component('cashouts-component', require('./components/CashOutsComponent.vue').default);
+Vue.component('employees-component', require('./components/EmployeesComponent.vue').default);
 Vue.component('expenses-component', require('./components/ExpensesComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('insumos-component', require('./components/InsumosComponent.vue').default);
+Vue.component('types-employees-component', require('./components/TypesEmployeesComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
