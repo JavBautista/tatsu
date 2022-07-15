@@ -68,7 +68,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/tipos-personal/active', [App\Http\Controllers\TypesEmployeeController::class, 'active']);
     Route::put('/tipos-personal/inactive', [App\Http\Controllers\TypesEmployeeController::class, 'inactive']);
 
+    /*REPORTES*/
 
+    Route::get('/reporte/test-fechas', [App\Http\Controllers\ReportsController::class, 'testFechasCarbon']);
+
+    Route::get('/reporte/corte-semanal', [App\Http\Controllers\ReportsController::class, 'corteSemanal']);
+    Route::get('/reporte/corte-mensual', [App\Http\Controllers\ReportsController::class, 'corteMensual']);
+
+    Route::get('/reporte/corte-semanal/get', [App\Http\Controllers\ReportsController::class, 'getCorteSemanal']);
+    Route::get('/reporte/corte-mensual/get', [App\Http\Controllers\ReportsController::class, 'getCorteMensual']);
 
 
 

@@ -5614,6 +5614,399 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteMensualComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteMensualComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      month: 1,
+      year: '2022',
+      array_days: [],
+      total_sales: 0,
+      total_expenses: 0,
+      total_card_sales: 0,
+      total_neto: 0,
+      total_expenses_generales: 0,
+      fecha_ini: '',
+      fecha_fin: '',
+      mostrar: false
+    };
+  },
+  methods: {
+    loadCortes: function loadCortes() {
+      var me = this;
+      console.log(me.month + ' ' + me.year);
+      var url = '/reporte/corte-mensual/get?month=' + me.month + '&year=' + me.year;
+      axios.get(url).then(function (response) {
+        console.log(response);
+        var respuesta = response.data;
+        me.array_days = [];
+        me.array_days = respuesta.array_days;
+        me.total_sales = respuesta.total_sales;
+        me.total_expenses = respuesta.total_expenses;
+        me.total_card_sales = respuesta.total_card_sales;
+        me.total_neto = respuesta.total_neto;
+        me.total_expenses_generales = respuesta.total_expenses_generales;
+        me.fecha_ini = respuesta.fecha_ini;
+        me.fecha_fin = respuesta.fecha_fin;
+        me.mostrar = true;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      })["finally"](function () {// always executed
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log('Corte Mensual Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteSemanalComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteSemanalComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var vuejs_datepicker_dist_locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuejs-datepicker/dist/locale */ "./node_modules/vuejs-datepicker/dist/locale/index.js");
+/* harmony import */ var vuejs_datepicker_dist_locale__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuejs_datepicker_dist_locale__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      array_days: [],
+      fecha: new Date(),
+      total_sales: 0,
+      total_expenses: 0,
+      total_card_sales: 0,
+      total_neto: 0,
+      total_expenses_generales: 0,
+      fecha_ini: '',
+      fecha_fin: '',
+      mostrar: false,
+      disabledDates: {
+        to: new Date(2022, 0, 1),
+        // Disable all dates up to specific date
+        from: new Date() // Disable all dates after specific date
+
+      }
+    };
+  },
+  methods: {
+    loadCortes: function loadCortes() {
+      var me = this;
+      console.log(me.fecha);
+      var fecha_formateada = moment__WEBPACK_IMPORTED_MODULE_2___default()(me.fecha).format('YYYY-MM-DD');
+      console.log(fecha_formateada);
+      var url = '/reporte/corte-semanal/get?fecha=' + fecha_formateada;
+      axios.get(url).then(function (response) {
+        console.log(response);
+        var respuesta = response.data;
+        me.array_days = [];
+        me.array_days = respuesta.array_days;
+        me.total_sales = respuesta.total_sales;
+        me.total_expenses = respuesta.total_expenses;
+        me.total_card_sales = respuesta.total_card_sales;
+        me.total_neto = respuesta.total_neto;
+        me.total_expenses_generales = respuesta.total_expenses_generales;
+        me.fecha_ini = respuesta.fecha_ini;
+        me.fecha_fin = respuesta.fecha_fin;
+        me.mostrar = true;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      })["finally"](function () {// always executed
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log('Corte Semanal Component mounted.');
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EmployeesComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EmployeesComponent.vue?vue&type=script&lang=js& ***!
@@ -7409,11 +7802,24 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('cashouts-component', (__webpack_require__(/*! ./components/CashOutsComponent.vue */ "./resources/js/components/CashOutsComponent.vue")["default"]));
+Vue.component('corte-semanal-component', (__webpack_require__(/*! ./components/CorteSemanalComponent.vue */ "./resources/js/components/CorteSemanalComponent.vue")["default"]));
+Vue.component('corte-mensual-component', (__webpack_require__(/*! ./components/CorteMensualComponent.vue */ "./resources/js/components/CorteMensualComponent.vue")["default"]));
 Vue.component('employees-component', (__webpack_require__(/*! ./components/EmployeesComponent.vue */ "./resources/js/components/EmployeesComponent.vue")["default"]));
 Vue.component('expenses-component', (__webpack_require__(/*! ./components/ExpensesComponent.vue */ "./resources/js/components/ExpensesComponent.vue")["default"]));
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 Vue.component('insumos-component', (__webpack_require__(/*! ./components/InsumosComponent.vue */ "./resources/js/components/InsumosComponent.vue")["default"]));
 Vue.component('types-employees-component', (__webpack_require__(/*! ./components/TypesEmployeesComponent.vue */ "./resources/js/components/TypesEmployeesComponent.vue")["default"]));
+Vue.filter('toCurrency', function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+
+  var formatter = new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency: 'MXN'
+  });
+  return formatter.format(value);
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -52164,6 +52570,84 @@ component.options.__file = "resources/js/components/CashOutsComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/CorteMensualComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/CorteMensualComponent.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CorteMensualComponent_vue_vue_type_template_id_7ea55216___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CorteMensualComponent.vue?vue&type=template&id=7ea55216& */ "./resources/js/components/CorteMensualComponent.vue?vue&type=template&id=7ea55216&");
+/* harmony import */ var _CorteMensualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CorteMensualComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CorteMensualComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CorteMensualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CorteMensualComponent_vue_vue_type_template_id_7ea55216___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CorteMensualComponent_vue_vue_type_template_id_7ea55216___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CorteMensualComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CorteSemanalComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/CorteSemanalComponent.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CorteSemanalComponent_vue_vue_type_template_id_50efc906___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CorteSemanalComponent.vue?vue&type=template&id=50efc906& */ "./resources/js/components/CorteSemanalComponent.vue?vue&type=template&id=50efc906&");
+/* harmony import */ var _CorteSemanalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CorteSemanalComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CorteSemanalComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CorteSemanalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CorteSemanalComponent_vue_vue_type_template_id_50efc906___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CorteSemanalComponent_vue_vue_type_template_id_50efc906___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CorteSemanalComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/EmployeesComponent.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/EmployeesComponent.vue ***!
@@ -52383,6 +52867,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/CorteMensualComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/CorteMensualComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteMensualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CorteMensualComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteMensualComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteMensualComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CorteSemanalComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/CorteSemanalComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteSemanalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CorteSemanalComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteSemanalComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteSemanalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/EmployeesComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/EmployeesComponent.vue?vue&type=script&lang=js& ***!
@@ -52541,6 +53057,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashOutsComponent_vue_vue_type_template_id_f576346c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashOutsComponent_vue_vue_type_template_id_f576346c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CashOutsComponent.vue?vue&type=template&id=f576346c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CashOutsComponent.vue?vue&type=template&id=f576346c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CorteMensualComponent.vue?vue&type=template&id=7ea55216&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/CorteMensualComponent.vue?vue&type=template&id=7ea55216& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteMensualComponent_vue_vue_type_template_id_7ea55216___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteMensualComponent_vue_vue_type_template_id_7ea55216___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteMensualComponent_vue_vue_type_template_id_7ea55216___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CorteMensualComponent.vue?vue&type=template&id=7ea55216& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteMensualComponent.vue?vue&type=template&id=7ea55216&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CorteSemanalComponent.vue?vue&type=template&id=50efc906&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/CorteSemanalComponent.vue?vue&type=template&id=50efc906& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteSemanalComponent_vue_vue_type_template_id_50efc906___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteSemanalComponent_vue_vue_type_template_id_50efc906___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CorteSemanalComponent_vue_vue_type_template_id_50efc906___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CorteSemanalComponent.vue?vue&type=template&id=50efc906& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteSemanalComponent.vue?vue&type=template&id=50efc906&");
 
 
 /***/ }),
@@ -53280,6 +53830,1011 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteMensualComponent.vue?vue&type=template&id=7ea55216&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteMensualComponent.vue?vue&type=template&id=7ea55216& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c(
+        "form",
+        {
+          staticClass: "row row-cols-lg-auto g-3 align-items-center",
+          attrs: { action: "", method: "post", enctype: "multipart/form-data" },
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+            },
+          },
+        },
+        [
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "label",
+              { staticClass: "visually-hidden", attrs: { for: "month" } },
+              [_vm._v("Mes")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group" }, [
+              _c("div", { staticClass: "input-group-text" }, [_vm._v("Mes")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.month,
+                      expression: "month",
+                    },
+                  ],
+                  staticClass: "form-select",
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.month = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                  },
+                },
+                [
+                  _c("option", { attrs: { value: "1" } }, [_vm._v("Enero")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "2" } }, [_vm._v("Febrero")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "3" } }, [_vm._v("Marzo")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "4" } }, [_vm._v("Abril")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "5" } }, [_vm._v("Mayo")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "6" } }, [_vm._v("Junio")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "7" } }, [_vm._v("Julio")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "8" } }, [_vm._v("Agosto")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "9" } }, [
+                    _vm._v("Septiembre"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "10" } }, [_vm._v("Octubre")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "11" } }, [
+                    _vm._v("Noviembre"),
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "12" } }, [
+                    _vm._v("Diciembre"),
+                  ]),
+                ]
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "label",
+              { staticClass: "visually-hidden", attrs: { for: "year" } },
+              [_vm._v("Año")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group" }, [
+              _c("div", { staticClass: "input-group-text" }, [_vm._v("Mes")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.year,
+                      expression: "year",
+                    },
+                  ],
+                  staticClass: "form-select",
+                  on: {
+                    change: function ($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function (o) {
+                          return o.selected
+                        })
+                        .map(function (o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.year = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                  },
+                },
+                [_c("option", { attrs: { value: "2022" } }, [_vm._v("2022")])]
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: {
+                  click: function ($event) {
+                    return _vm.loadCortes()
+                  },
+                },
+              },
+              [_vm._v("Filtrar")]
+            ),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm.mostrar
+        ? [
+            _c("h3", [
+              _vm._v(
+                "Corte mensual " +
+                  _vm._s(_vm.fecha_ini) +
+                  " al " +
+                  _vm._s(_vm.fecha_fin)
+              ),
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-bordered" }, [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th", [_vm._v(" ")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (dia) {
+                      return _c("th", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(dia.date)),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("TOTALES")]),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c(
+                  "tr",
+                  { staticClass: "table-success" },
+                  [
+                    _c("td", [_vm._v("VENTAS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.sales))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total_sales))),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS TIENDA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.expenses))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(_vm.total_expenses))
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  [
+                    _c("td", [_vm._v("TARJETA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.card_sales))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(_vm.total_card_sales))
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-active" },
+                  [
+                    _c("td", [_vm._v("NETO")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _c("strong", [
+                          _vm._v(_vm._s(_vm._f("toCurrency")(data.total))),
+                        ]),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total_neto))),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Gastos totales")]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-bordered" }, [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th", [_vm._v(" ")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (dia) {
+                      return _c("th", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(dia.date)),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("TOTALES")]),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS TIENDA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.expenses))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(_vm.total_expenses))
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS OTROS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(data.expenses_generals))
+                        ),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(_vm.total_expenses_generales)
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-active" },
+                  [
+                    _c("td", [_vm._v("GASTOS TOTALES")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _c("strong", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("toCurrency")(
+                                data.expenses_generals + data.expenses
+                              )
+                            )
+                          ),
+                        ]),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              _vm.total_expenses_generales + _vm.total_expenses
+                            )
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Balance de ingresos y egresos")]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-bordered" }, [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th", [_vm._v(" ")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (dia) {
+                      return _c("th", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(dia.date)),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("TOTALES")]),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c(
+                  "tr",
+                  { staticClass: "table-success" },
+                  [
+                    _c("td", [_vm._v("VENTAS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.sales))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total_sales))),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              data.expenses_generals + data.expenses
+                            )
+                          )
+                        ),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              _vm.total_expenses_generales + _vm.total_expenses
+                            )
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-active" },
+                  [
+                    _c("td", [_vm._v("DIFERENCIA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c(
+                        "td",
+                        {
+                          class:
+                            data.sales -
+                              (data.expenses_generals + data.expenses) <
+                            0
+                              ? "bg-danger text-light"
+                              : "",
+                        },
+                        [
+                          _c("strong", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("toCurrency")(
+                                  data.sales -
+                                    (data.expenses_generals + data.expenses)
+                                )
+                              )
+                            ),
+                          ]),
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              _vm.total_sales -
+                                (_vm.total_expenses_generales +
+                                  _vm.total_expenses)
+                            )
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+          ]
+        : _vm._e(),
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteSemanalComponent.vue?vue&type=template&id=50efc906&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CorteSemanalComponent.vue?vue&type=template&id=50efc906& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c(
+        "form",
+        {
+          staticClass: "row row-cols-lg-auto g-3 align-items-center",
+          attrs: { action: "", method: "post", enctype: "multipart/form-data" },
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+            },
+          },
+        },
+        [
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "label",
+              { staticClass: "visually-hidden", attrs: { for: "fecha" } },
+              [_vm._v("FECHA")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "input-group" },
+              [
+                _c("div", { staticClass: "input-group-text" }, [
+                  _vm._v("FECHA"),
+                ]),
+                _vm._v(" "),
+                _c("datepicker", {
+                  staticClass: "form-control",
+                  attrs: { disabledDates: _vm.disabledDates },
+                  model: {
+                    value: _vm.fecha,
+                    callback: function ($$v) {
+                      _vm.fecha = $$v
+                    },
+                    expression: "fecha",
+                  },
+                }),
+              ],
+              1
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: {
+                  click: function ($event) {
+                    return _vm.loadCortes()
+                  },
+                },
+              },
+              [_vm._v("Filtrar")]
+            ),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm.mostrar
+        ? [
+            _c("h3", [
+              _vm._v(
+                "Corte semanal " +
+                  _vm._s(_vm.fecha_ini) +
+                  " al " +
+                  _vm._s(_vm.fecha_fin)
+              ),
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-bordered" }, [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th", [_vm._v(" ")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (dia) {
+                      return _c("th", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(dia.dd) + " "),
+                        _c("br"),
+                        _vm._v(" " + _vm._s(dia.date)),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("TOTALES")]),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c(
+                  "tr",
+                  { staticClass: "table-success" },
+                  [
+                    _c("td", [_vm._v("VENTAS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.sales))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total_sales))),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS TIENDA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.expenses))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(_vm.total_expenses))
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  [
+                    _c("td", [_vm._v("TARJETA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.card_sales))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(_vm.total_card_sales))
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-active" },
+                  [
+                    _c("td", [_vm._v("NETO")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _c("strong", [
+                          _vm._v(_vm._s(_vm._f("toCurrency")(data.total))),
+                        ]),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total_neto))),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Gastos totales")]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-bordered" }, [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th", [_vm._v(" ")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (dia) {
+                      return _c("th", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(dia.dd) + " "),
+                        _c("br"),
+                        _vm._v(" " + _vm._s(dia.date)),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("TOTALES")]),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS TIENDA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.expenses))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(_vm.total_expenses))
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS OTROS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(
+                          _vm._s(_vm._f("toCurrency")(data.expenses_generals))
+                        ),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(_vm.total_expenses_generales)
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-active" },
+                  [
+                    _c("td", [_vm._v("GASTOS TOTALES")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _c("strong", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("toCurrency")(
+                                data.expenses_generals + data.expenses
+                              )
+                            )
+                          ),
+                        ]),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              _vm.total_expenses_generales + _vm.total_expenses
+                            )
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("h4", [_vm._v("Balance de ingresos y egresos")]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-bordered" }, [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th", [_vm._v(" ")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (dia) {
+                      return _c("th", { staticClass: "text-center" }, [
+                        _vm._v(_vm._s(dia.dd) + " "),
+                        _c("br"),
+                        _vm._v(" " + _vm._s(dia.date)),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("TOTALES")]),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c(
+                  "tr",
+                  { staticClass: "table-success" },
+                  [
+                    _c("td", [_vm._v("VENTAS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(data.sales))),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total_sales))),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-warning" },
+                  [
+                    _c("td", [_vm._v("GASTOS")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              data.expenses_generals + data.expenses
+                            )
+                          )
+                        ),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              _vm.total_expenses_generales + _vm.total_expenses
+                            )
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "tr",
+                  { staticClass: "table-active" },
+                  [
+                    _c("td", [_vm._v("DIFERENCIA")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.array_days, function (data) {
+                      return _c(
+                        "td",
+                        {
+                          class:
+                            data.sales -
+                              (data.expenses_generals + data.expenses) <
+                            0
+                              ? "bg-danger text-light"
+                              : "",
+                        },
+                        [
+                          _c("strong", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("toCurrency")(
+                                  data.sales -
+                                    (data.expenses_generals + data.expenses)
+                                )
+                              )
+                            ),
+                          ]),
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("toCurrency")(
+                              _vm.total_sales -
+                                (_vm.total_expenses_generales +
+                                  _vm.total_expenses)
+                            )
+                          )
+                        ),
+                      ]),
+                    ]),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
+          ]
+        : _vm._e(),
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

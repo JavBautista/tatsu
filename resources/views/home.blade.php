@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    <div class="list-group">
+                    <div class="list-group mt-4">
+                      <a href="/reporte/corte-semanal"  class="list-group-item list-group-item-action">CORTE SEMANAL</a>
+                      <a href="/reporte/corte-mensual"  class="list-group-item list-group-item-action">CORTE MENSUAL</a>
+                    </div>
+
+                    <div class="list-group mt-4">
                       <a href="/cortes"  class="list-group-item list-group-item-action">CORTES</a>
                       <a href="/gastos"  class="list-group-item list-group-item-action">GASTOS</a>
                       <a href="/insumos" class="list-group-item list-group-item-action">INSUMOS</a>
