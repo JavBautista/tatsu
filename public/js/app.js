@@ -5417,6 +5417,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -54376,6 +54379,26 @@ var render = function () {
                                 },
                               },
                             }),
+                          ]),
+                          _vm._v(" "),
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c("h4", [
+                            _vm._v(
+                              "NETO: $ " + _vm._s(_vm.sales - _vm.expenses)
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", [
+                            _vm._v(
+                              "EFECTIVO: $ " +
+                                _vm._s(
+                                  _vm.sales -
+                                    (parseFloat(_vm.expenses) +
+                                      parseFloat(_vm.card_sales) +
+                                      parseFloat(_vm.card_tips))
+                                )
+                            ),
                           ]),
                         ])
                       : _vm._e(),

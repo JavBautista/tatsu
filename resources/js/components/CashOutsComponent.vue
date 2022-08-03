@@ -120,6 +120,9 @@
                                     <label for="card_tisp">Propina tarjeta</label>
                                     <input type="number" min="0" step="1" class="form-control" v-model="card_tips" placeholder="0.00">
                                 </div>
+                                <hr>
+                                <h4>NETO: $ {{ sales - expenses }}</h4>
+                                <h4>EFECTIVO: $ {{ sales - ( parseFloat(expenses) + parseFloat(card_sales) + parseFloat(card_tips) ) }}</h4>
 
                                 <!--<div class="form-group">
                                     <label for="observarion">Comentario</label>
