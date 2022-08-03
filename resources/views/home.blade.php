@@ -28,6 +28,7 @@
                     <div class="list-group mt-4">
                       <a href="/personal"  class="list-group-item list-group-item-action">PERSONAL</a>
                       <a href="/tipos-personal"  class="list-group-item list-group-item-action">TIPOS DE PERSONAL</a>
+                      <a href="/nomina"  class="list-group-item list-group-item-action">NOMINA</a>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CashOut;
 use App\Models\Expense;
+use App\Models\Payroll;
 use Illuminate\Support\Carbon;
 
 class ReportsController extends Controller
@@ -80,6 +81,7 @@ class ReportsController extends Controller
                 'total'=>0,
                 'cash'=>0,
                 'expenses_generals'=>0,
+                'payrolls'=>0,
             ];
         }
 
@@ -88,6 +90,7 @@ class ReportsController extends Controller
         $total_card_sales =0;
         $total_neto       =0;
         $total_expenses_generales =0;
+        $total_payrolls   =0;
 
         //Obtenemos los cortes y gastos generales en las fechas determinadas
         $cortes = CashOut::whereBetween('date',[$start,$end])
@@ -95,6 +98,9 @@ class ReportsController extends Controller
                             ->get();
 
         $expenses_generals = Expense::whereBetween('date',[$start,$end])
+                            ->orderBy('date','desc')
+                            ->get();
+        $payrolls = Payroll::whereBetween('date',[$start,$end])
                             ->orderBy('date','desc')
                             ->get();
 
@@ -117,12 +123,21 @@ class ReportsController extends Controller
             }
         }
 
-        //Con los Gastos generales iremos sumando cada gato al día correspendiente en el array de dias de la semana
+        //Con los Gastos generales iremos sumando cada gasto al día correspendiente en el array de dias de la semana
         foreach($expenses_generals as $xg){
             $index=$xg->date;
             if(isset($array_days[$index])){
                 $total_expenses_generales +=$xg->cost;
                 $array_days[$index]['expenses_generals']+=$xg->cost;
+            }
+        }
+
+        //Con los Payrolls iremos sumando cada gasto al día correspendiente en el array de dias de la semana
+        foreach($payrolls as $pr){
+            $index=$pr->date;
+            if(isset($array_days[$index])){
+                $total_payrolls +=$pr->total;
+                $array_days[$index]['payrolls']+=$pr->total;
             }
         }
 
@@ -136,6 +151,7 @@ class ReportsController extends Controller
             'total_card_sales'=>$total_card_sales,
             'total_neto'=>$total_neto,
             'total_expenses_generales'=>$total_expenses_generales,
+            'total_payrolls'=>$total_payrolls,
         ];
     }
 
@@ -163,6 +179,7 @@ class ReportsController extends Controller
                 'total'=>0,
                 'cash'=>0,
                 'expenses_generals'=>0,
+                'payrolls'=>0,
             ];
         }
 
@@ -171,6 +188,7 @@ class ReportsController extends Controller
         $total_card_sales =0;
         $total_neto       =0;
         $total_expenses_generales =0;
+        $total_payrolls =0;
 
         //Obtenemos los cortes y gastos generales en las fechas determinadas
         $cortes = CashOut::whereBetween('date',[$start,$end])
@@ -178,6 +196,9 @@ class ReportsController extends Controller
                             ->get();
 
         $expenses_generals = Expense::whereBetween('date',[$start,$end])
+                            ->orderBy('date','desc')
+                            ->get();
+        $payrolls = Payroll::whereBetween('date',[$start,$end])
                             ->orderBy('date','desc')
                             ->get();
 
@@ -209,6 +230,15 @@ class ReportsController extends Controller
             }
         }
 
+        //Con los Gastos generales iremos sumando cada gato al día correspendiente en el array de dias de la semana
+        foreach($payrolls as $pr){
+            $index=$pr->date;
+            if(isset($array_days[$index])){
+                $total_payrolls +=$pr->total;
+                $array_days[$index]['payrolls']+=$pr->total;
+            }
+        }
+
 
         return [
             'fecha_ini'=>$start,
@@ -219,6 +249,7 @@ class ReportsController extends Controller
             'total_card_sales'=>$total_card_sales,
             'total_neto'=>$total_neto,
             'total_expenses_generales'=>$total_expenses_generales,
+            'total_payrolls'=>$total_payrolls,
         ];
     }
 }

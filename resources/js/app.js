@@ -27,6 +27,7 @@ Vue.component('employees-component', require('./components/EmployeesComponent.vu
 Vue.component('expenses-component', require('./components/ExpensesComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('insumos-component', require('./components/InsumosComponent.vue').default);
+Vue.component('payroll-component', require('./components/PayrollComponent.vue').default);
 Vue.component('types-employees-component', require('./components/TypesEmployeesComponent.vue').default);
 
 Vue.filter('toCurrency', function (value) {
@@ -39,6 +40,14 @@ Vue.filter('toCurrency', function (value) {
     });
     return formatter.format(value);
 });
+
+import moment from "moment";
+
+Vue.filter('toDateShort', function (value) {
+    let fecha = moment(value).format('YYYY-MM-DD');
+    return fecha;
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -45,6 +45,13 @@ class EmployeeController extends Controller
         ];
     }
 
+    public function getAllActive(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+        $employees = Employee::where('active',1)->get();
+        return $employees;
+    }
+
 
     public function store(Request $request)
     {

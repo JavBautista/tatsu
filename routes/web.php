@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     /*PERSONAL*/
     Route::get('/personal', [App\Http\Controllers\EmployeeController::class, 'index'])->name('personal');
+    Route::get('/personal/get/all/active', [App\Http\Controllers\EmployeeController::class, 'getAllActive']);
     Route::get('/personal/get', [App\Http\Controllers\EmployeeController::class, 'get']);
     Route::post('/personal/store', [App\Http\Controllers\EmployeeController::class, 'store']);
     Route::put('/personal/update', [App\Http\Controllers\EmployeeController::class, 'update']);
@@ -78,7 +79,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reporte/corte-semanal/get', [App\Http\Controllers\ReportsController::class, 'getCorteSemanal']);
     Route::get('/reporte/corte-mensual/get', [App\Http\Controllers\ReportsController::class, 'getCorteMensual']);
 
+    /*NOMINA*/
+    Route::get('/nomina', [App\Http\Controllers\PayrollController::class, 'index']);
 
-
+    Route::get('/nomina/get', [App\Http\Controllers\PayrollController::class, 'get']);
+    Route::post('/nomina/store', [App\Http\Controllers\PayrollController::class, 'store']);
+    Route::put('/nomina/update', [App\Http\Controllers\PayrollController::class, 'update']);
+    Route::put('/nomina/disable', [App\Http\Controllers\PayrollController::class, 'disable']);
 
 });#./Middlware AUTH

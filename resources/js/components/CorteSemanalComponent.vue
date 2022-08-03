@@ -14,7 +14,7 @@
         </form>
         <hr>
         <template v-if="mostrar">
-            <h3>Corte semanal {{fecha_ini }} al {{fecha_fin}}</h3>
+            <h3>Corte semanal tienda {{fecha_ini }} al {{fecha_fin}}</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -69,13 +69,18 @@
                         <td v-for="data in array_days">{{data.expenses_generals | toCurrency}}</td>
                         <td><strong>{{ total_expenses_generales | toCurrency }}</strong></td>
                     </tr>
+                    <tr class="table-warning">
+                        <td>NOMINA</td>
+                        <td v-for="data in array_days">{{data.payrolls | toCurrency}}</td>
+                        <td><strong>{{ total_payrolls | toCurrency }}</strong></td>
+                    </tr>
                     <tr class="table-active">
                         <td>GASTOS TOTALES</td>
                         <td v-for="data in array_days">
-                            <strong>{{ data.expenses_generals+data.expenses | toCurrency}}</strong>
+                            <strong>{{ data.expenses_generals+data.expenses+data.payrolls | toCurrency}}</strong>
                         </td>
                         <td>
-                            <strong>{{ total_expenses_generales+total_expenses  | toCurrency }}</strong>
+                            <strong>{{ total_expenses_generales+total_expenses+total_payrolls  | toCurrency }}</strong>
                         </td>
                     </tr>
                 </tbody>
@@ -98,16 +103,16 @@
                     </tr>
                     <tr class="table-warning">
                         <td>GASTOS</td>
-                        <td v-for="data in array_days">{{ data.expenses_generals+data.expenses | toCurrency}}</td>
-                        <td><strong>{{ total_expenses_generales+total_expenses  | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{ data.expenses_generals+data.expenses+data.payrolls | toCurrency}}</td>
+                        <td><strong>{{ total_expenses_generales+total_expenses+total_payrolls  | toCurrency }}</strong></td>
                     </tr>
                     <tr class="table-active">
                         <td>DIFERENCIA</td>
-                        <td :class="((data.sales-(data.expenses_generals+data.expenses))<0)?'bg-danger text-light':''"
+                        <td :class="((data.sales-(data.expenses_generals+data.expenses+data.payrolls))<0)?'bg-danger text-light':''"
                             v-for="data in array_days">
-                            <strong>{{ (data.sales-(data.expenses_generals+data.expenses)) | toCurrency}}</strong>
+                            <strong>{{ (data.sales-(data.expenses_generals+data.expenses+data.payrolls)) | toCurrency}}</strong>
                         </td>
-                        <td><strong>{{ (total_sales-(total_expenses_generales+total_expenses))  | toCurrency }}</strong></td>
+                        <td><strong>{{ (total_sales-(total_expenses_generales+total_expenses+total_payrolls))  | toCurrency }}</strong></td>
                     </tr>
                 </tbody>
             </table>
@@ -132,6 +137,7 @@
                 total_card_sales:0,
                 total_neto:0,
                 total_expenses_generales:0,
+                total_payrolls:0,
                 fecha_ini:'',
                 fecha_fin:'',
                 mostrar:false,
@@ -159,6 +165,7 @@
                     me.total_card_sales= respuesta.total_card_sales;
                     me.total_neto= respuesta.total_neto;
                     me.total_expenses_generales= respuesta.total_expenses_generales;
+                    me.total_payrolls= respuesta.total_payrolls;
                     me.fecha_ini= respuesta.fecha_ini;
                     me.fecha_fin= respuesta.fecha_fin;
                     me.mostrar=true;

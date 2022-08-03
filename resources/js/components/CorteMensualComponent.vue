@@ -42,31 +42,31 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="text-center" v-for="dia in array_days">{{dia.date}}</th>
                         <th>TOTALES</th>
+                        <th class="text-center" v-for="dia in array_days">{{dia.date}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="table-success">
                         <td>VENTAS</td>
-                        <td v-for="data in array_days">{{data.sales | toCurrency}}</td>
                         <td><strong>{{ total_sales | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{data.sales | toCurrency}}</td>
                     </tr>
                     <tr class="table-warning">
                         <td>GASTOS TIENDA</td>
-                        <td v-for="data in array_days">{{data.expenses | toCurrency}}</td>
                         <td><strong>{{ total_expenses | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{data.expenses | toCurrency}}</td>
                     </tr>
 
                     <tr>
                         <td>TARJETA</td>
-                        <td v-for="data in array_days">{{data.card_sales | toCurrency}}</td>
                         <td><strong>{{ total_card_sales | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{data.card_sales | toCurrency}}</td>
                     </tr>
                     <tr class="table-active">
                         <td>NETO</td>
-                        <td v-for="data in array_days"><strong>{{data.total | toCurrency}}</strong></td>
                         <td><strong>{{ total_neto | toCurrency }}</strong></td>
+                        <td v-for="data in array_days"><strong>{{data.total | toCurrency}}</strong></td>
                     </tr>
                 </tbody>
             </table>
@@ -76,29 +76,34 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="text-center" v-for="dia in array_days">{{dia.date}}</th>
                         <th>TOTALES</th>
+                        <th class="text-center" v-for="dia in array_days">{{dia.date}}</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <tr class="table-warning">
                         <td>GASTOS TIENDA</td>
-                        <td v-for="data in array_days">{{data.expenses | toCurrency}}</td>
                         <td><strong>{{ total_expenses | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{data.expenses | toCurrency}}</td>
                     </tr>
                     <tr class="table-warning">
                         <td>GASTOS OTROS</td>
-                        <td v-for="data in array_days">{{data.expenses_generals | toCurrency}}</td>
                         <td><strong>{{ total_expenses_generales | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{data.expenses_generals | toCurrency}}</td>
+                    </tr>
+                    <tr class="table-warning">
+                        <td>NOMINA</td>
+                        <td><strong>{{ total_payrolls | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{data.payrolls | toCurrency}}</td>
                     </tr>
                     <tr class="table-active">
                         <td>GASTOS TOTALES</td>
-                        <td v-for="data in array_days">
-                            <strong>{{ data.expenses_generals+data.expenses | toCurrency}}</strong>
-                        </td>
                         <td>
-                            <strong>{{ total_expenses_generales+total_expenses  | toCurrency }}</strong>
+                            <strong>{{ total_expenses_generales+total_expenses+total_payrolls  | toCurrency }}</strong>
+                        </td>
+                        <td v-for="data in array_days">
+                            <strong>{{ data.expenses_generals+data.expenses+data.payrolls | toCurrency}}</strong>
                         </td>
                     </tr>
                 </tbody>
@@ -109,28 +114,28 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th class="text-center" v-for="dia in array_days">{{dia.date}}</th>
                         <th>TOTALES</th>
+                        <th class="text-center" v-for="dia in array_days">{{dia.date}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="table-success">
                         <td>VENTAS</td>
-                        <td v-for="data in array_days">{{data.sales | toCurrency}}</td>
                         <td><strong>{{ total_sales | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{data.sales | toCurrency}}</td>
                     </tr>
                     <tr class="table-warning">
                         <td>GASTOS</td>
-                        <td v-for="data in array_days">{{ data.expenses_generals+data.expenses | toCurrency}}</td>
-                        <td><strong>{{ total_expenses_generales+total_expenses  | toCurrency }}</strong></td>
+                        <td><strong>{{ total_expenses_generales+total_expenses+total_payrolls  | toCurrency }}</strong></td>
+                        <td v-for="data in array_days">{{ data.expenses_generals+data.expenses+data.payrolls | toCurrency}}</td>
                     </tr>
                     <tr class="table-active">
                         <td>DIFERENCIA</td>
-                        <td :class="((data.sales-(data.expenses_generals+data.expenses))<0)?'bg-danger text-light':''"
+                        <td><strong>{{ (total_sales-(total_expenses_generales+total_expenses+total_payrolls))  | toCurrency }}</strong></td>
+                        <td :class="((data.sales-(data.expenses_generals+data.expenses+data.payrolls))<0)?'bg-danger text-light':''"
                             v-for="data in array_days">
-                            <strong>{{ (data.sales-(data.expenses_generals+data.expenses)) | toCurrency}}</strong>
+                            <strong>{{ (data.sales-(data.expenses_generals+data.expenses+data.payrolls)) | toCurrency}}</strong>
                         </td>
-                        <td><strong>{{ (total_sales-(total_expenses_generales+total_expenses))  | toCurrency }}</strong></td>
                     </tr>
                 </tbody>
             </table>
@@ -150,6 +155,7 @@
                 total_card_sales:0,
                 total_neto:0,
                 total_expenses_generales:0,
+                total_payrolls:0,
                 fecha_ini:'',
                 fecha_fin:'',
                 mostrar:false,
