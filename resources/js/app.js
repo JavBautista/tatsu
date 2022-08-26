@@ -26,8 +26,10 @@ Vue.component('corte-mensual-component', require('./components/CorteMensualCompo
 Vue.component('employees-component', require('./components/EmployeesComponent.vue').default);
 Vue.component('expenses-component', require('./components/ExpensesComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('fixed-expenses-component', require('./components/FixedExpenses.vue').default);
 Vue.component('insumos-component', require('./components/InsumosComponent.vue').default);
 Vue.component('payroll-component', require('./components/PayrollComponent.vue').default);
+Vue.component('report-expenses-billing-component', require('./components/ReportExpensesBillingComponent.vue').default);
 Vue.component('types-employees-component', require('./components/TypesEmployeesComponent.vue').default);
 
 Vue.filter('toCurrency', function (value) {

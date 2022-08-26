@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FixedExpensesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-        
+
+
     Route::get('/cortes', [App\Http\Controllers\CashOutController::class, 'index'])->name('cortes');
     Route::get('/cortes/get', [App\Http\Controllers\CashOutController::class, 'get']);
     Route::post('/cortes/store', [App\Http\Controllers\CashOutController::class, 'store']);
@@ -49,6 +50,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/gastos', [App\Http\Controllers\ExpenseController::class, 'index'])->name('gastos');
     Route::get('/gastos/get', [App\Http\Controllers\ExpenseController::class, 'get']);
     Route::post('/gastos/store', [App\Http\Controllers\ExpenseController::class, 'store']);
+
+    Route::get('/gastos-fijos', [FixedExpensesController::class, 'index']);
+    Route::get('/gastos-fijos/get', [FixedExpensesController::class, 'get']);
+    Route::post('/gastos-fijos/store', [FixedExpensesController::class, 'store']);
+    Route::put('/gastos-fijos/update', [FixedExpensesController::class, 'update']);
+    Route::put('/gastos-fijos/active', [FixedExpensesController::class, 'activar']);
+    Route::put('/gastos-fijos/inactive', [FixedExpensesController::class, 'desactivar']);
 
     /*PERSONAL*/
     Route::get('/personal', [App\Http\Controllers\EmployeeController::class, 'index'])->name('personal');
@@ -79,8 +87,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reporte/corte-semanal/get', [App\Http\Controllers\ReportsController::class, 'getCorteSemanal']);
     Route::get('/reporte/corte-mensual/get', [App\Http\Controllers\ReportsController::class, 'getCorteMensual']);
 
+    Route::get('/reporte/facturas', [App\Http\Controllers\ReportsController::class, 'facturas']);
+    Route::get('/reporte/facturas/get', [App\Http\Controllers\ReportsController::class, 'getFacturas']);
+
     /*NOMINA*/
-    Route::get('/nomina', [App\Http\Controllers\PayrollController::class, 'index']);
+    Route::get('/nomina/captura', [App\Http\Controllers\PayrollController::class, 'index']);
 
     Route::get('/nomina/get', [App\Http\Controllers\PayrollController::class, 'get']);
     Route::post('/nomina/store', [App\Http\Controllers\PayrollController::class, 'store']);

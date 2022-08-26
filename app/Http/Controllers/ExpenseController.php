@@ -47,6 +47,8 @@ class ExpenseController extends Controller
         $expense->description = $request->description;
         $expense->cost = $request->cost;
         $expense->till = $request->till;
+        $expense->billing = $request->billing;
+        $expense->billing_reference = $request->billing_reference;
         $expense->person = $request->person;
         $expense->evidence = $request->evidence;
         $expense->date = $request->date;

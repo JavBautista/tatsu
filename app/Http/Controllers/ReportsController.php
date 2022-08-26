@@ -56,6 +56,10 @@ class ReportsController extends Controller
         return view('reportes.corte_mensual');
     }
 
+    public function facturas(){
+        return view('reportes.facturas');
+    }
+
 
     public function getCorteSemanal(Request $request){
         //Determinamos la fecha inicial y final a partir de la feha recibida
@@ -251,5 +255,13 @@ class ReportsController extends Controller
             'total_expenses_generales'=>$total_expenses_generales,
             'total_payrolls'=>$total_payrolls,
         ];
+    }
+
+
+    public function getFacturas(Request $request){
+        $expenses_billing = Expense::where('billing',1)->get();
+        return [
+            'expenses_billing'=>$expenses_billing
+            ];
     }
 }

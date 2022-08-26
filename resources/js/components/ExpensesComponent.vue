@@ -32,6 +32,7 @@
                                     <th>Persona</th>
                                     <th>Evidencia</th>
                                     <th>Costo</th>
+                                    <th>Facturado</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -44,7 +45,17 @@
                                     <td v-text="expense.evidence"></td>
                                     <td v-text="'$'+expense.cost"></td>
                                     <td>
-                                        <button type="button" class="btn btn-info" @click="abrirModal('expense','actualizar_datos', cashout)">Editar</button>                                        
+                                        <span v-if="expense.billing" class="badge bg-info">Facturado</span>
+                                        <span v-else class="badge bg-secondary">Sin Facturar</span>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm" @click="abrirModal('expense','actualizar_datos', expense)"> <i class="bi bi-pencil-square"></i> </button>
+
+                                        <button v-if="expense.billing" type="button" class="btn btn-sm btn-warning" @click="editSinFacturar(expense.id)" title="No Facturado"> <i class="bi bi-receipt-cutoff"></i></button>
+
+                                        <button v-else type="button" class="btn btn-sm btn-secondary" @click="editFacturar(expense.id)" title="Facturar"> <i class="bi bi-receipt-cutoff"></i></button>
+
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -93,7 +104,7 @@
                             </div>
                             <p><em><strong class="text text-danger">* Campos obligatorios</strong></em></p>
                             <!--tipoAccion==1 o 2: Agregar o ACtualizar-->
-                            <div v-if="tipoAccion==1 || tipoAccion==2">
+                            <div v-if="tipoAccion==1 || tipoAccion==2 || tipoAccion==3">
                             <!--<div v-else>-->
                                 
                                 <div class="form-group">
@@ -103,16 +114,26 @@
 
                                 <div class="form-group">
                                     <label for="description"><strong class="text text-danger">*</strong>Concepto</label>
-                                    <input type="text" class="form-control" v-model="description"  placeholder="Ingrecse concepto de gatos" required>
+                                    <input  type="text" class="form-control"
+                                            v-model="description"
+                                            placeholder="Ingrese concepto de gasto"
+
+                                            required>
                                 </div>
 
-                                
-                                
                                 <div class="form-group">
                                     <label for="cost"><strong class="text text-danger">*</strong>Costo</label>
-                                    <input type="number" min="0" step="1" class="form-control" v-model="cost" placeholder="0.00">
+                                    <input type="number" min="0" step="1" max="99999999.99" class="form-control" v-model="cost" placeholder="0.00">
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="person">Persona</label>
+                                    <input type="text" class="form-control" v-model="person"  placeholder="Persona que realizó el gasto.">
+                                </div>
+                                <div class="form-group">
+                                    <label for="evidence">Evidencia</label>
+                                    <input type="text" class="form-control" v-model="evidence"  placeholder="Ingrese evidencia">
+                                </div>
 
                                 <div class="form-group form-check">
                                     <input class="form-check-input" type="checkbox" value="" v-model="till">
@@ -120,23 +141,18 @@
                                         ¿Gasto de caja?
                                     </label>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <strong class="text text-danger">*</strong><label for="person">Persona</label>
-                                    <input type="text" class="form-control" v-model="person"  placeholder="Persona que realiza el gasto." required>
+                                <hr>
+                               <div class="form-group form-check">
+                                    <input class="form-check-input" type="checkbox" value="" v-model="billing">
+                                    <label class="form-check-label" for="billing">
+                                        Facturado
+                                    </label>
                                 </div>
                                 <div class="form-group">
-                                    <strong class="text text-danger">*</strong><label for="evidence">Evidencia</label>
-                                    <input type="text" class="form-control" v-model="evidence"  placeholder="Enter Name" required>
+                                    <label for="billing_reference">Referencia de factura</label>
+                                    <input type="text" class="form-control" v-model="billing_reference"  placeholder="Ingrese folio, número o referencia de la factura. ">
                                 </div>
-                               
-                               
 
-                                <!--<div class="form-group">
-                                    <label for="observarion">Comentario</label>
-                                    <textarea class="form-control" v-model="observarion"  rows="3"></textarea>
-                                </div>
-                                -->
                             </div>
                             <!--./tipoAccion==1 o 2: Agregar o ACtualizar-->
                         </form>
@@ -145,6 +161,7 @@
                         <button type="button" class="btn btn-secondary"  @click="cerrarModal()">Cerrar</button>
                         <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrar()">Guardar</button>
                         <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarDatos()">Actualizar</button>
+                        <button type="button" v-if="tipoAccion==3" class="btn btn-primary" @click="actualizarDatosFacturacion()">Actualizar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -183,6 +200,8 @@
               description:'',
               cost:0,
               till:0,
+              billing:0,
+              billing_reference:'',
               person:'',
               evidence:'',
               date:'',
@@ -247,7 +266,8 @@
                 me.pagination.current_page = page;
                 me.cargarGastos(page,buscar,criterio);
             },
-             validarDatos(){
+
+            validarDatos(){
                 this.errorExpense=0;
                 this.eerrorMostrarMsjExpense=[];
                 if(!this.date) this.eerrorMostrarMsjExpense.push('El valor fecha no puede estar vacio.');
@@ -266,6 +286,8 @@
                   'description':me.description,
                   'cost':me.cost,
                   'till':me.till,
+                  'billing':me.billing,
+                  'billing_reference':me.billing_reference,
                   'person':me.person,
                   'evidence':me.evidence,
                   'date':f1
@@ -288,6 +310,8 @@
                   'description':me.description,
                   'cost':me.cost,
                   'till':me.till,
+                  'billing':me.billing,
+                  'billing_reference':me.billing_reference,
                   'person':me.person,
                   'evidence':me.evidence,
                   'date':f1
@@ -313,6 +337,8 @@
                                 this.description='';
                                 this.cost=0;
                                 this.till=0;
+                                this.billing=0;
+                                this.billing_reference='';
                                 this.person ='';
                                 this.evidence ='';
                                 this.date='';
@@ -329,9 +355,30 @@
                                 this.description = data['description'];
                                 this.cost = data['cost'];
                                 this.till = data['till'];
+                                this.billing = data['billing'];
+                                this.billing_reference = data['billing_reference'];
                                 this.person = data['person'];
                                 this.evidence  = data['evidence'];
-                                this.date  = '';
+                                this.date  = data['date'];
+                                console.log(data['date']);
+                                break;
+                            }
+                            case 'actualizar_datos_facturacion':{
+                                this.modal=1;
+                                this.tipoAccion =3;
+                                this.tituloModal='Actualizar';
+
+                                this.expense_id= data['id'];
+
+                                this.description = data['description'];
+                                this.cost = data['cost'];
+                                this.till = data['till'];
+                                this.billing = data['billing'];
+                                this.billing_reference = data['billing_reference'];
+                                this.person = data['person'];
+                                this.evidence  = data['evidence'];
+                                this.date  = data['date'];
+                                console.log(data['date']);
                                 break;
                             }
                         }

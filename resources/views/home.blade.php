@@ -13,22 +13,27 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <h2>REPORTES</h2>
                     <div class="list-group mt-4">
                       <a href="/reporte/corte-semanal"  class="list-group-item list-group-item-action">CORTE SEMANAL</a>
                       <a href="/reporte/corte-mensual"  class="list-group-item list-group-item-action">CORTE MENSUAL</a>
+
+                      <a href="/reporte/facturas"  class="list-group-item list-group-item-action">FACTURAS</a>
                     </div>
 
+                    <h2 class="mt-4">CAPTURAS</h2>
                     <div class="list-group mt-4">
                       <a href="/cortes"  class="list-group-item list-group-item-action">CORTES</a>
                       <a href="/gastos"  class="list-group-item list-group-item-action">GASTOS</a>
                       <a href="/insumos" class="list-group-item list-group-item-action">INSUMOS</a>
                     </div>
 
+                    <h2 class="mt-4">CONFIGURACIONES</h2>
                     <div class="list-group mt-4">
+                      <a href="/gastos-fijos"  class="list-group-item list-group-item-action">GASTOS FIJOS</a>
                       <a href="/personal"  class="list-group-item list-group-item-action">PERSONAL</a>
                       <a href="/tipos-personal"  class="list-group-item list-group-item-action">TIPOS DE PERSONAL</a>
-                      <a href="/nomina"  class="list-group-item list-group-item-action">NOMINA</a>
+                      <a href="/nomina/caprura"  class="list-group-item list-group-item-action">NOMINA</a>
                     </div>
                 </div>
             </div>
