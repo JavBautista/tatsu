@@ -14,8 +14,10 @@
                         <div class="col-md-6">
                         <div class="input-group">
                             <select class="form-control col-md-3" v-model="criterio">
-                                <option value="name">Nombre</option>
                                 <option value="description">Descripción</option>
+                                <option value="cost">Costo</option>
+                                <option value="date">Fecha</option>
+                                <option value="person">Persona</option>
                             </select>
                             <input type="text" v-model="buscar" class="form-control" placeholder="Texto a buscar" @keyup.enter="cargarGastos(1,buscar,criterio)">
                             <button type="submit" @click="cargarGastos(1,buscar,criterio)" class="btn btn-primary"><i class="bi bi-search"></i> Buscar</button>
@@ -33,6 +35,7 @@
                                     <th>Evidencia</th>
                                     <th>Costo</th>
                                     <th>Facturado</th>
+                                    <th># Ref.Fac.</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -48,6 +51,7 @@
                                         <span v-if="expense.billing" class="badge bg-info">Facturado</span>
                                         <span v-else class="badge bg-secondary">Sin Facturar</span>
                                     </td>
+                                    <td v-tect="expense.billing_reference"></td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" @click="abrirModal('expense','actualizar_datos', expense)"> <i class="bi bi-pencil-square"></i> </button>
 
@@ -189,7 +193,7 @@
                   'to':0
               },
               offset:3,
-              criterio:'name',
+              criterio:'description',
               buscar:'',
 
               expense_id:0,              
@@ -396,7 +400,7 @@
         },
         mounted() {
             console.log('Expense component mounted.')
-            this.cargarGastos(1,'','name');
+            this.cargarGastos(1,'','description');
         }
     }
 </script>

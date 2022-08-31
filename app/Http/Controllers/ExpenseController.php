@@ -19,11 +19,11 @@ class ExpenseController extends Controller
         $criterio = $request->criterio;
 
         if($buscar==''){
-            $expenses = Expense::orderBy('id', 'desc')
+            $expenses = Expense::orderBy('date', 'desc')
                         ->paginate(20);
         }else{
             $expenses = Expense::where($criterio, 'like', '%'.$buscar.'%')
-                        ->orderBy('id','desc')
+                        ->orderBy('date','desc')
                         ->paginate(20);
         }
 

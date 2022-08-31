@@ -6666,6 +6666,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6685,7 +6689,7 @@ __webpack_require__.r(__webpack_exports__);
         'to': 0
       },
       offset: 3,
-      criterio: 'name',
+      criterio: 'description',
       buscar: '',
       expense_id: 0,
       description: '',
@@ -6889,7 +6893,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Expense component mounted.');
-    this.cargarGastos(1, '', 'name');
+    this.cargarGastos(1, '', 'description');
   }
 });
 
@@ -57175,12 +57179,20 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "name" } }, [
-                      _vm._v("Nombre"),
-                    ]),
-                    _vm._v(" "),
                     _c("option", { attrs: { value: "description" } }, [
                       _vm._v("Descripción"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "cost" } }, [
+                      _vm._v("Costo"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "date" } }, [
+                      _vm._v("Fecha"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "person" } }, [
+                      _vm._v("Persona"),
                     ]),
                   ]
                 ),
@@ -57274,6 +57286,17 @@ var render = function () {
                             _vm._v("Sin Facturar"),
                           ]),
                     ]),
+                    _vm._v(" "),
+                    _c("td", {
+                      directives: [
+                        {
+                          name: "tect",
+                          rawName: "v-tect",
+                          value: expense.billing_reference,
+                          expression: "expense.billing_reference",
+                        },
+                      ],
+                    }),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -57893,6 +57916,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Costo")]),
         _vm._v(" "),
         _c("th", [_vm._v("Facturado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("# Ref.Fac.")]),
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")]),
       ]),
