@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/gastos', [App\Http\Controllers\ExpenseController::class, 'index'])->name('gastos');
     Route::get('/gastos/get', [App\Http\Controllers\ExpenseController::class, 'get']);
     Route::post('/gastos/store', [App\Http\Controllers\ExpenseController::class, 'store']);
+    Route::put('/gastos/update-info', [App\Http\Controllers\ExpenseController::class, 'updateInfo']);
+    Route::put('/gastos/update-factura', [App\Http\Controllers\ExpenseController::class, 'updateFactura']);
 
     Route::get('/gastos-fijos', [FixedExpensesController::class, 'index']);
     Route::get('/gastos-fijos/get', [FixedExpensesController::class, 'get']);

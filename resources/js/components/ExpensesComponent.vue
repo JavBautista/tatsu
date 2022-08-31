@@ -51,11 +51,7 @@
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" @click="abrirModal('expense','actualizar_datos', expense)"> <i class="bi bi-pencil-square"></i> </button>
 
-                                        <button v-if="expense.billing" type="button" class="btn btn-sm btn-warning" @click="editSinFacturar(expense.id)" title="No Facturado"> <i class="bi bi-receipt-cutoff"></i></button>
-
-                                        <button v-else type="button" class="btn btn-sm btn-secondary" @click="editFacturar(expense.id)" title="Facturar"> <i class="bi bi-receipt-cutoff"></i></button>
-
-
+                                        <button type="button" class="btn btn-sm btn-warning" @click="abrirModal('expense','actualizar_datos_facturacion', expense)" title="Act. Factura"><i class="bi bi-receipt-cutoff"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -104,10 +100,10 @@
                             </div>
                             <p><em><strong class="text text-danger">* Campos obligatorios</strong></em></p>
                             <!--tipoAccion==1 o 2: Agregar o ACtualizar-->
-                            <div v-if="tipoAccion==1 || tipoAccion==2 || tipoAccion==3">
+                            <div v-if="tipoAccion==1 || tipoAccion==2">
                             <!--<div v-else>-->
                                 
-                                <div class="form-group">
+                                <div v-if="tipoAccion==1"  class="form-group">
                                     <label for="date"><strong class="text text-danger">*</strong>Fecha del gasto</label>
                                     <datepicker v-model="date"></datepicker>
                                 </div>
@@ -141,8 +137,10 @@
                                         ¿Gasto de caja?
                                     </label>
                                 </div>
-                                <hr>
-                               <div class="form-group form-check">
+                            </div>
+                            <!--./tipoAccion==1 o 2: Agregar o ACtualizar-->
+                            <div v-if="tipoAccion==3">
+                                <div class="form-group form-check">
                                     <input class="form-check-input" type="checkbox" value="" v-model="billing">
                                     <label class="form-check-label" for="billing">
                                         Facturado
@@ -152,9 +150,7 @@
                                     <label for="billing_reference">Referencia de factura</label>
                                     <input type="text" class="form-control" v-model="billing_reference"  placeholder="Ingrese folio, número o referencia de la factura. ">
                                 </div>
-
                             </div>
-                            <!--./tipoAccion==1 o 2: Agregar o ACtualizar-->
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -266,7 +262,6 @@
                 me.pagination.current_page = page;
                 me.cargarGastos(page,buscar,criterio);
             },
-
             validarDatos(){
                 this.errorExpense=0;
                 this.eerrorMostrarMsjExpense=[];
@@ -301,22 +296,31 @@
                 });
             },           
             actualizarDatos(){
-                if(this.validarDatos()){
-                    return;
-                }
+
                 let me=this;
-                axios.put('/cortes/update',{
-                  'expense_id':me.expense_id,               
+                axios.put('/gastos/update-info',{
+                  'id':me.expense_id,
                   'description':me.description,
                   'cost':me.cost,
                   'till':me.till,
-                  'billing':me.billing,
-                  'billing_reference':me.billing_reference,
                   'person':me.person,
-                  'evidence':me.evidence,
-                  'date':f1
-                  //'observation':me.observation
+                  'evidence':me.evidence
+                }).then(function (response){
+                  //console.log(response)
+                  me.cerrarModal();
+                  me.cargarGastos(me.pagination.current_page,me.buscar,me.criterio)
+                }).catch(function (error){
+                    console.log(error);
+                });
+            },
 
+            actualizarDatosFacturacion(){
+
+                let me=this;
+                axios.put('/gastos/update-factura',{
+                  'id':me.expense_id,
+                  'billing':me.billing,
+                  'billing_reference':me.billing_reference
                 }).then(function (response){
                   //console.log(response)
                   me.cerrarModal();
@@ -366,7 +370,7 @@
                             case 'actualizar_datos_facturacion':{
                                 this.modal=1;
                                 this.tipoAccion =3;
-                                this.tituloModal='Actualizar';
+                                this.tituloModal='Actualizar datos facturación';
 
                                 this.expense_id= data['id'];
 

@@ -54,4 +54,23 @@ class ExpenseController extends Controller
         $expense->date = $request->date;
         $expense->save();
     }//store
+
+    public function updateInfo(Request $request){
+        if(!$request->ajax()) return redirect('/');
+        $expense= Expense::findOrFail($request->id);
+        $expense->description = $request->description;
+        $expense->cost = $request->cost;
+        $expense->till = $request->till;
+        $expense->person = $request->person;
+        $expense->evidence = $request->evidence;
+        $expense->save();
+    }//updateInfo
+
+    public function updateFactura(Request $request){
+        if(!$request->ajax()) return redirect('/');
+        $expense= Expense::findOrFail($request->id);
+        $expense->billing = $request->billing;
+        $expense->billing_reference = $request->billing_reference;
+        $expense->save();
+    }//updateFactura
 }

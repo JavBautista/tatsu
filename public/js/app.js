@@ -6666,10 +6666,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -6794,22 +6790,28 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     actualizarDatos: function actualizarDatos() {
-      if (this.validarDatos()) {
-        return;
-      }
-
       var me = this;
-      axios.put('/cortes/update', {
-        'expense_id': me.expense_id,
+      axios.put('/gastos/update-info', {
+        'id': me.expense_id,
         'description': me.description,
         'cost': me.cost,
         'till': me.till,
-        'billing': me.billing,
-        'billing_reference': me.billing_reference,
         'person': me.person,
-        'evidence': me.evidence,
-        'date': f1 //'observation':me.observation
-
+        'evidence': me.evidence
+      }).then(function (response) {
+        //console.log(response)
+        me.cerrarModal();
+        me.cargarGastos(me.pagination.current_page, me.buscar, me.criterio);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    actualizarDatosFacturacion: function actualizarDatosFacturacion() {
+      var me = this;
+      axios.put('/gastos/update-factura', {
+        'id': me.expense_id,
+        'billing': me.billing,
+        'billing_reference': me.billing_reference
       }).then(function (response) {
         //console.log(response)
         me.cerrarModal();
@@ -6863,7 +6865,7 @@ __webpack_require__.r(__webpack_exports__);
                 {
                   this.modal = 1;
                   this.tipoAccion = 3;
-                  this.tituloModal = 'Actualizar';
+                  this.tituloModal = 'Actualizar datos facturación';
                   this.expense_id = data['id'];
                   this.description = data['description'];
                   this.cost = data['cost'];
@@ -57292,33 +57294,23 @@ var render = function () {
                         [_c("i", { staticClass: "bi bi-pencil-square" })]
                       ),
                       _vm._v(" "),
-                      expense.billing
-                        ? _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-warning",
-                              attrs: { type: "button", title: "No Facturado" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.editSinFacturar(expense.id)
-                                },
-                              },
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-warning",
+                          attrs: { type: "button", title: "Act. Factura" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.abrirModal(
+                                "expense",
+                                "actualizar_datos_facturacion",
+                                expense
+                              )
                             },
-                            [_c("i", { staticClass: "bi bi-receipt-cutoff" })]
-                          )
-                        : _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-secondary",
-                              attrs: { type: "button", title: "Facturar" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.editFacturar(expense.id)
-                                },
-                              },
-                            },
-                            [_c("i", { staticClass: "bi bi-receipt-cutoff" })]
-                          ),
+                          },
+                        },
+                        [_c("i", { staticClass: "bi bi-receipt-cutoff" })]
+                      ),
                     ]),
                   ])
                 }),
@@ -57512,28 +57504,28 @@ var render = function () {
                     _vm._v(" "),
                     _vm._m(1),
                     _vm._v(" "),
-                    _vm.tipoAccion == 1 ||
-                    _vm.tipoAccion == 2 ||
-                    _vm.tipoAccion == 3
+                    _vm.tipoAccion == 1 || _vm.tipoAccion == 2
                       ? _c("div", [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _vm._m(2),
-                              _vm._v(" "),
-                              _c("datepicker", {
-                                model: {
-                                  value: _vm.date,
-                                  callback: function ($$v) {
-                                    _vm.date = $$v
-                                  },
-                                  expression: "date",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
+                          _vm.tipoAccion == 1
+                            ? _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c("datepicker", {
+                                    model: {
+                                      value: _vm.date,
+                                      callback: function ($$v) {
+                                        _vm.date = $$v
+                                      },
+                                      expression: "date",
+                                    },
+                                  }),
+                                ],
+                                1
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group" }, [
                             _vm._m(3),
@@ -57712,9 +57704,11 @@ var render = function () {
                               ]
                             ),
                           ]),
-                          _vm._v(" "),
-                          _c("hr"),
-                          _vm._v(" "),
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.tipoAccion == 3
+                      ? _c("div", [
                           _c("div", { staticClass: "form-group form-check" }, [
                             _c("input", {
                               directives: [
