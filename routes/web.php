@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -93,10 +93,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reporte/facturas/get', [App\Http\Controllers\ReportsController::class, 'getFacturas']);
 
     /*NOMINA*/
+    Route::get('/nomina/caprura-load-info', [App\Http\Controllers\PayrollController::class, 'capturaLoadInfoPeriodo']);
+
     Route::get('/nomina/captura', [App\Http\Controllers\PayrollController::class, 'index']);
 
     Route::get('/nomina/get', [App\Http\Controllers\PayrollController::class, 'get']);
+
     Route::post('/nomina/store', [App\Http\Controllers\PayrollController::class, 'store']);
+
+    Route::put('/nomina/actualizar/montos', [App\Http\Controllers\PayrollController::class, 'updateAmounts']);
+
     Route::put('/nomina/update', [App\Http\Controllers\PayrollController::class, 'update']);
     Route::put('/nomina/disable', [App\Http\Controllers\PayrollController::class, 'disable']);
 

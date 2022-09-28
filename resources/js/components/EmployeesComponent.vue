@@ -26,6 +26,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Puesto</th>
                                     <th>Direccion</th>
                                     <th>Teléfono</th>
                                     <th>Email</th>
@@ -38,6 +39,7 @@
                             <tbody>
                                 <tr v-for="personal in arrayPersonal" :key="personal.id">
                                     <td v-text="personal.name"></td>
+                                    <td v-text="personal.description"></td>
                                     <td v-text="personal.address"></td>
                                     <td v-text="personal.movil"></td>
                                     <td v-text="personal.mail"></td>

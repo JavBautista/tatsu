@@ -28,6 +28,7 @@ class AddColumBillingToExpensesTable extends Migration
     {
         Schema::table('expenses', function (Blueprint $table) {
             $table->dropColumn('billing');
+            $table->dropColumn('billing_reference');
         });
     }
 }

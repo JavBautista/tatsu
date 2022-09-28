@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -24,11 +25,17 @@ class EmployeeController extends Controller
         $criterio = $request->criterio;
 
         if($buscar==''){
-            $employee = Employee::orderBy('id', 'desc')
+            $employee = DB::table('employees')
+                        ->leftJoin('types_employees', 'employees.id', '=', 'types_employees.id')
+                        ->select('employees.*','types_employees.description')
+                        ->orderBy('employees.id', 'desc')
                         ->paginate(20);
         }else{
-            $employee = Employee::where($criterio, 'like', '%'.$buscar.'%')
-                        ->orderBy('id','desc')
+            $employee = DB::table('employees')
+                        ->leftJoin('types_employees', 'employees.id', '=', 'types_employees.id')
+                        ->select('employees.*','types_employees.description')
+                        ->where($criterio, 'like', '%'.$buscar.'%')
+                        ->orderBy('employees.id','desc')
                         ->paginate(20);
         }
 
