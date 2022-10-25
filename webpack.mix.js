@@ -17,3 +17,5 @@ mix.scripts([
     .js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
+
+mix.browserSync('http://tatsu.local/');

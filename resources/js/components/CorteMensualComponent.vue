@@ -175,6 +175,8 @@
                     me.total_sales= respuesta.total_sales;
                     me.total_expenses= respuesta.total_expenses;
                     me.total_card_sales= respuesta.total_card_sales;
+                    me.total_payrolls= respuesta.total_payrolls;
+
                     me.total_neto= respuesta.total_neto;
                     me.total_expenses_generales= respuesta.total_expenses_generales;
                     me.fecha_ini= respuesta.fecha_ini;
