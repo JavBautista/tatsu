@@ -27,6 +27,7 @@
                     <div class="input-group-text">Mes</div>
                     <select class="form-select" v-model="year">
                         <option value="2022">2022</option>
+                        <option value="2023">2022</option>
                     </select>
                 </div>
             </div>
