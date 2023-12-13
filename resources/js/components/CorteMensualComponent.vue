@@ -26,8 +26,9 @@
                 <div class="input-group">
                     <div class="input-group-text">Mes</div>
                     <select class="form-select" v-model="year">
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
                         <option value="2022">2022</option>
-                        <option value="2023">2022</option>
                     </select>
                 </div>
             </div>
@@ -149,7 +150,7 @@
         data(){
             return {
                 month:1,
-                year:'2022',
+                year:'2024',
                 array_days:[],
                 total_sales:0,
                 total_expenses:0,

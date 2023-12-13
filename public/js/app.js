@@ -5821,11 +5821,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       month: 1,
-      year: '2022',
+      year: '2024',
       array_days: [],
       total_sales: 0,
       total_expenses: 0,
@@ -7583,13 +7584,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -7613,7 +7607,6 @@ __webpack_require__.r(__webpack_exports__);
       criterio: 'name',
       buscar: '',
       product_id: 0,
-      key: '',
       name: '',
       provider: '',
       description: '',
@@ -7708,7 +7701,6 @@ __webpack_require__.r(__webpack_exports__);
     validarDatosProduct: function validarDatosProduct() {
       this.errorProducto = 0;
       this.errorMostrarMsjProducto = [];
-      if (!this.key) this.errorMostrarMsjProducto.push('El valor key no puede estar vacio.');
       if (!this.name) this.errorMostrarMsjProducto.push('El valor nombre no puede estar vacio.');
       if (!this.qty) this.errorMostrarMsjProducto.push('El valor qty no puede estar vacio.');
       if (!this.cost) this.errorMostrarMsjProducto.push('El valor costo no puede estar vacio.');
@@ -7723,7 +7715,6 @@ __webpack_require__.r(__webpack_exports__);
       var me = this;
       console.log(me.unit);
       axios.post('/insumos/store', {
-        'key': me.key,
         'barcode': me.barcode,
         'name': me.name,
         'provider': me.provider,
@@ -7777,7 +7768,6 @@ __webpack_require__.r(__webpack_exports__);
       var me = this;
       axios.put('/insumos/update', {
         'product_id': me.product_id,
-        'key': me.key,
         'provider': me.provider,
         'name': me.name,
         'description': me.description,
@@ -7885,13 +7875,12 @@ __webpack_require__.r(__webpack_exports__);
                   this.tipoAccion = 1;
                   this.tituloModal = 'Agregar Producto';
                   this.product_id = 0;
-                  this.key = '';
                   this.name = '';
                   this.description = '';
                   this.provider = '';
-                  this.unit = 0;
-                  this.cost = 0;
-                  this.qty = 0;
+                  this.unit = 1;
+                  this.cost = 1;
+                  this.qty = 1;
                   break;
                 }
 
@@ -7901,7 +7890,6 @@ __webpack_require__.r(__webpack_exports__);
                   this.tipoAccion = 2;
                   this.tituloModal = 'Actualizar Producto';
                   this.product_id = data['id'];
-                  this.key = data['key'];
                   this.name = data['name'];
                   this.description = data['description'];
                   this.provider = data['provider'];
@@ -55467,9 +55455,11 @@ var render = function () {
                   },
                 },
                 [
-                  _c("option", { attrs: { value: "2022" } }, [_vm._v("2022")]),
+                  _c("option", { attrs: { value: "2024" } }, [_vm._v("2024")]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "2023" } }, [_vm._v("2022")]),
+                  _c("option", { attrs: { value: "2023" } }, [_vm._v("2023")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "2022" } }, [_vm._v("2022")]),
                 ]
               ),
             ]),
@@ -58930,10 +58920,6 @@ var render = function () {
                 _vm._l(_vm.arrayProducts, function (product) {
                   return _c("tr", { key: product.id }, [
                     _c("td", {
-                      domProps: { textContent: _vm._s(product.key) },
-                    }),
-                    _vm._v(" "),
-                    _c("td", {
                       domProps: { textContent: _vm._s(product.name) },
                     }),
                     _vm._v(" "),
@@ -59242,41 +59228,6 @@ var render = function () {
                     _vm.tipoAccion == 1 || _vm.tipoAccion == 2
                       ? _c("div", [
                           _vm._m(1),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "form-group" }, [
-                            _c("strong", { staticClass: "text text-danger" }, [
-                              _vm._v("*"),
-                            ]),
-                            _c("label", { attrs: { for: "key" } }, [
-                              _vm._v("Key"),
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.key,
-                                  expression: "key",
-                                },
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Enter Key",
-                                required: "",
-                              },
-                              domProps: { value: _vm.key },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.key = $event.target.value
-                                },
-                              },
-                            }),
-                          ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group" }, [
                             _c("strong", { staticClass: "text text-danger" }, [
@@ -59703,8 +59654,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Clave")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("Unidad")]),

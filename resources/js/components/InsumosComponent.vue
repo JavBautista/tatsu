@@ -30,7 +30,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Clave</th>
                                     <th>Nombre</th>
                                     <!--<th>Proveedor</th>
                                     <th>Descripción</th>
@@ -45,7 +44,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="product in arrayProducts" :key="product.id">
-                                    <td v-text="product.key"></td>
+
                                     <td v-text="product.name"></td>
                                     <!--<td v-text="product.provider"></td>
                                     <td v-text="product.description"></td>
@@ -114,12 +113,6 @@
                             <!--tipoAccion==1 o 2: Agregar o ACtualizar-->
                             <div v-if="tipoAccion==1 || tipoAccion==2">
                                 <p><em><strong class="text text-danger">* Campos obligatorios</strong></em></p>
-                                <div class="form-group">
-                                    <strong class="text text-danger">*</strong><label for="key">Key</label>
-                                    <input type="text" class="form-control" v-model="key"  placeholder="Enter Key" required>
-                                </div>
-
-                               
                                 <div class="form-group">
                                     <strong class="text text-danger">*</strong><label for="name">Name</label>
                                     <input type="text" class="form-control" v-model="name"  placeholder="Enter Name" required>
@@ -232,7 +225,6 @@
               buscar:'',
 
               product_id:0,              
-              key:'',
               name:'',
               provider:'',
               description:'',
@@ -333,7 +325,6 @@
              validarDatosProduct(){
                 this.errorProducto=0;
                 this.errorMostrarMsjProducto=[];
-                if(!this.key) this.errorMostrarMsjProducto.push('El valor key no puede estar vacio.');
                 if(!this.name) this.errorMostrarMsjProducto.push('El valor nombre no puede estar vacio.');
                 if(!this.qty) this.errorMostrarMsjProducto.push('El valor qty no puede estar vacio.');
                 if(!this.cost) this.errorMostrarMsjProducto.push('El valor costo no puede estar vacio.');
@@ -347,7 +338,6 @@
                 let me=this;
                 console.log(me.unit)
                 axios.post('/insumos/store',{
-                  'key':me.key,
                   'barcode':me.barcode,
                   'name':me.name,
                   'provider':me.provider,
@@ -400,7 +390,6 @@
                 let me=this;
                 axios.put('/insumos/update',{
                   'product_id':me.product_id,                  
-                  'key':me.key,
                   'provider':me.provider,
                   'name':me.name,
                   'description':me.description,                  
@@ -511,13 +500,12 @@
                                 this.tituloModal='Agregar Producto';
 
                                 this.product_id=0;
-                                this.key='';
                                 this.name='';
                                 this.description ='';
                                 this.provider ='';
-                                this.unit=0;
-                                this.cost=0;
-                                this.qty=0;
+                                this.unit=1;
+                                this.cost=1;
+                                this.qty=1;
 
                                 break;
                             }
@@ -527,7 +515,6 @@
                                 this.tituloModal='Actualizar Producto';
 
                                 this.product_id= data['id'];
-                                this.key  = data['key'];
                                 this.name = data['name'];
                                 this.description = data['description'];
                                 this.provider = data['provider'];
