@@ -18,8 +18,10 @@
 		                <td>{{ DateTime::createFromFormat('!m', $month)->format('F') }}</td>
 		                @foreach (array_keys($formattedData) as $year)
 		                    <td>
-		                        @if (isset($formattedData[$year][$month - 1]))
-		                            {{ number_format($formattedData[$year][$month - 1]['total_sales'], 2, '.', ',') }} MXN
+		                        @if (isset($formattedData[$year][$month]))
+		                            {{ number_format($formattedData[$year][$month]['total_sales'], 2, '.', ',') }} MXN
+		                        @else
+		                            0.00 MXN
 		                        @endif
 		                    </td>
 		                @endforeach
@@ -27,6 +29,7 @@
 		        @endfor
 		    </tbody>
 		</table>
+
 	</div>
 
 @endsection

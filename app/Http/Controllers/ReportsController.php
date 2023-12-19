@@ -283,22 +283,33 @@ class ReportsController extends Controller
             ->get();
         // Formatear los resultados para el frontend
         $formattedData = [];
+
+         // Procesar los datos y agruparlos por año y mes
         foreach ($salesData as $sale) {
-            $formattedData[$sale->year][] = [
-                'month' => $sale->month,
+            $formattedData[$sale->year][$sale->month] = [
                 'total_sales' => $sale->total_sales,
             ];
         }
 
         // Crear un array para los años que pueden faltar en los registros
+        $currentYear = now()->year;
+        $firstYear = CashOut::orderBy('date', 'asc')->value(DB::raw('YEAR(date)'));
         for ($year = $firstYear; $year <= $currentYear; $year++) {
-            if (!isset($formattedData[$year])) {
-                $formattedData[$year] = [];
+            for ($month = 1; $month <= 12; $month++) {
+                if (!isset($formattedData[$year][$month])) {
+                    $formattedData[$year][$month] = [
+                        'total_sales' => 0,
+                    ];
+                }
             }
         }
 
-        // Ordenar el array por año
+        // Ordenar el array por año y mes
         ksort($formattedData);
+        foreach ($formattedData as &$yearData) {
+            ksort($yearData);
+        }
+
         return view('reportes.ventas-anuales', ['formattedData'=>$formattedData]);
     }//reporteVentasAnuales()
 }
