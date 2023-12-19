@@ -19,9 +19,9 @@
 		                @foreach (array_keys($formattedData) as $year)
 		                    <td>
 		                        @if (isset($formattedData[$year][$month]))
-		                            {{ number_format($formattedData[$year][$month]['total_sales'], 2, '.', ',') }} MXN
+		                            $ {{ number_format($formattedData[$year][$month]['total_sales'], 2, '.', ',') }} MXN
 		                        @else
-		                            0.00 MXN
+		                            $ 0.00 MXN
 		                        @endif
 		                    </td>
 		                @endforeach
