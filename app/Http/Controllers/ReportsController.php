@@ -7,6 +7,7 @@ use App\Models\CashOut;
 use App\Models\Expense;
 use App\Models\Payroll;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
 {
@@ -264,4 +265,40 @@ class ReportsController extends Controller
             'expenses_billing'=>$expenses_billing
             ];
     }
+
+
+    public function reporteVentasAnuales(){
+        // Obtener el primer año registrado en la tabla
+        $firstYear = CashOut::orderBy('date', 'asc')->value(DB::raw('YEAR(date)'));
+        // Obtener el año actual
+        $currentYear = now()->year;
+
+         // Obtener todas las ventas por mes de cada año
+        $salesData = CashOut::select(
+                DB::raw('YEAR(date) as year'),
+                DB::raw('MONTH(date) as month'),
+                DB::raw('SUM(sales) as total_sales')
+            )
+            ->groupBy('year', 'month')
+            ->get();
+        // Formatear los resultados para el frontend
+        $formattedData = [];
+        foreach ($salesData as $sale) {
+            $formattedData[$sale->year][] = [
+                'month' => $sale->month,
+                'total_sales' => $sale->total_sales,
+            ];
+        }
+
+        // Crear un array para los años que pueden faltar en los registros
+        for ($year = $firstYear; $year <= $currentYear; $year++) {
+            if (!isset($formattedData[$year])) {
+                $formattedData[$year] = [];
+            }
+        }
+
+        // Ordenar el array por año
+        ksort($formattedData);
+        return view('reportes.ventas-anuales', ['formattedData'=>$formattedData]);
+    }//reporteVentasAnuales()
 }

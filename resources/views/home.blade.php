@@ -19,6 +19,8 @@
                       <a href="/reporte/corte-mensual"  class="list-group-item list-group-item-action">CORTE MENSUAL</a>
 
                       <a href="/reporte/facturas"  class="list-group-item list-group-item-action">FACTURAS</a>
+
+                      <a href="/reporte/ventas-anuales"  class="list-group-item list-group-item-action">REPORTE VENTAS ANAUALES</a>
                     </div>
 
                     <h2 class="mt-4">CAPTURAS</h2>
