@@ -273,42 +273,44 @@ class ReportsController extends Controller
         // Obtener el año actual
         $currentYear = now()->year;
 
-         // Obtener todas las ventas por mes de cada año
-        $salesData = CashOut::select(
-                DB::raw('YEAR(date) as year'),
-                DB::raw('MONTH(date) as month'),
-                DB::raw('SUM(sales) as total_sales')
-            )
-            ->groupBy('year', 'month')
-            ->get();
-        // Formatear los resultados para el frontend
-        $formattedData = [];
+         // Obtener todas las ventas y gastos por mes de cada año
+    $salesAndExpensesData = CashOut::select(
+            DB::raw('YEAR(date) as year'),
+            DB::raw('MONTH(date) as month'),
+            DB::raw('SUM(sales) as total_sales'),
+            DB::raw('SUM(expenses) as total_expenses')
+        )
+        ->groupBy('year', 'month')
+        ->get();
+
+    // Formatear los resultados para el frontend
+    $formattedData = [];
 
          // Procesar los datos y agruparlos por año y mes
-        foreach ($salesData as $sale) {
-            $formattedData[$sale->year][$sale->month] = [
-                'total_sales' => $sale->total_sales,
-            ];
-        }
+    foreach ($salesAndExpensesData as $data) {
+        $formattedData[$data->year][$data->month] = [
+            'total_sales' => $data->total_sales,
+            'total_expenses' => $data->total_expenses,
+        ];
+    }
 
         // Crear un array para los años que pueden faltar en los registros
-        $currentYear = now()->year;
-        $firstYear = CashOut::orderBy('date', 'asc')->value(DB::raw('YEAR(date)'));
-        for ($year = $firstYear; $year <= $currentYear; $year++) {
-            for ($month = 1; $month <= 12; $month++) {
-                if (!isset($formattedData[$year][$month])) {
-                    $formattedData[$year][$month] = [
-                        'total_sales' => 0,
-                    ];
-                }
+    for ($year = $firstYear; $year <= $currentYear; $year++) {
+        for ($month = 1; $month <= 12; $month++) {
+            if (!isset($formattedData[$year][$month])) {
+                $formattedData[$year][$month] = [
+                    'total_sales' => 0,
+                    'total_expenses' => 0,
+                ];
             }
         }
+    }
 
-        // Ordenar el array por año y mes
-        ksort($formattedData);
-        foreach ($formattedData as &$yearData) {
-            ksort($yearData);
-        }
+    // Ordenar el array por año y mes
+    ksort($formattedData);
+    foreach ($formattedData as &$yearData) {
+        ksort($yearData);
+    }
 
         return view('reportes.ventas-anuales', ['formattedData'=>$formattedData]);
     }//reporteVentasAnuales()
