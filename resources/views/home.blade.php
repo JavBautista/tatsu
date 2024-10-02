@@ -21,6 +21,7 @@
                       <a href="/reporte/facturas"  class="list-group-item list-group-item-action">FACTURAS</a>
 
                       <a href="/reporte/ventas-anuales"  class="list-group-item list-group-item-action">REPORTE VENTAS ANAUALES</a>
+                      <a href="/reporte/ventas-mes-dias"  class="list-group-item list-group-item-action">VENTAS MES/DIA</a>
                     </div>
 
                     <h2 class="mt-4">CAPTURAS</h2>

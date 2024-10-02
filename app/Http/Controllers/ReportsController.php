@@ -314,4 +314,26 @@ class ReportsController extends Controller
 
         return view('reportes.ventas-anuales', ['formattedData'=>$formattedData]);
     }//reporteVentasAnuales()
+
+
+
+    public function reporteVentasMesDia(Request $request){
+        $year = $request->input('year') ?? date('Y');
+        $month = $request->input('month') ?? date('n');
+
+        // Obtener la fecha de inicio y fin del mes
+        $startOfMonth = Carbon::createFromDate($year, $month, 1)->startOfMonth();
+        $endOfMonth = $startOfMonth->copy()->endOfMonth();
+
+        // Consulta para obtener las ventas de cada día del mes
+        $ventasPorDia = CashOut::whereBetween('date', [$startOfMonth, $endOfMonth])
+                                ->get()
+                                ->groupBy(function($date) {
+                                    return Carbon::parse($date->date)->format('d');
+                                });
+        //dd($ventasPorDia);
+        // Devolver la vista con los datos filtrados
+        return view('reportes.ventas-mes-dias', compact('year', 'month', 'ventasPorDia'));
+
+    }
 }

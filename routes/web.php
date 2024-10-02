@@ -81,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     /*REPORTES*/
 
+    Route::get('/reporte/ventas-mes-dias', [App\Http\Controllers\ReportsController::class, 'reporteVentasMesDia'])->name('ventas.mes-dia');
     Route::get('/reporte/ventas-anuales', [App\Http\Controllers\ReportsController::class, 'reporteVentasAnuales']);
 
     Route::get('/reporte/test-fechas', [App\Http\Controllers\ReportsController::class, 'testFechasCarbon']);
